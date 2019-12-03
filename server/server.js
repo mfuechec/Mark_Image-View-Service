@@ -1,14 +1,17 @@
 const express = require('express');
 const app = express();
+const db = require('../db/index.js');
 
 app.use(express.static('public'));
 
-app.get('/', function (req, res) {
-    
-    // req.params.id is the ID number of the selected item
-    // will also need to make a get request to the database
-    // the database will tell me what media the selected item has
-    // a query to AWS will get specific links to media
+app.get(`/:id`, function (req, res) {
+    db.getImage(req.params.id, (error, result) => {
+        if (error) {
+            res.error(error);
+        } else {
+            res.send(result);
+        }
+    })
 });
 
 app.listen(3010, function() {
