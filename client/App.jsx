@@ -12,9 +12,10 @@ React.Component {
             numOfImgs: 6,
             itemName: "",
             numOfVids: 0,
-            imageNumber: 2
+            imageNumber: 1
         }
         this.get.bind(this);
+        this.onClick.bind(this);
     }
 
     get() {
@@ -32,12 +33,16 @@ React.Component {
         })
     }
 
+    onClick(event) {
+        const target = event.target;
+    }
+
     render() {
         this.get()
         return (
             <div id="Marks-main-container">
                 <div id="Marks-side-images">
-                <SideImages />
+                <SideImages imgId={this.state.selectedItem} onClick={this.onClick.bind(this)} numOfImgs={this.state.numOfImgs} imageNumber={this.state.imageNumber} />
                 </div>
                 <div id="Marks-main-image">
                 <MainImage imgId={this.state.selectedItem} imgNum={this.state.imageNumber}/>
