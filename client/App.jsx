@@ -34,7 +34,13 @@ React.Component {
     }
 
     onClick(event) {
-        const target = event.target;
+        const target = event.target.src;
+        const split = target.split('Image-')
+        const anotherSplit = split[1].split('.');
+        const id = anotherSplit[0];
+        this.setState({
+            imageNumber: id,
+        })
     }
 
     render() {
