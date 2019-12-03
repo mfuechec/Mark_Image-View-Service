@@ -8,7 +8,9 @@ React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedItem: 1
+            selectedItem: 1,
+            imagesOfSelectedItem: 6,
+            imageNumber: 2
         }
         this.get.bind(this);
     }
@@ -28,7 +30,7 @@ React.Component {
         return (
             <div>
                 <div>App rendering</div>
-                <MainImage />
+                <MainImage imgId={this.state.selectedItem} imgNum={this.state.imageNumber}/>
                 <SideImages />
             </div>
         )

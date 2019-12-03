@@ -1,8 +1,9 @@
 import React from 'react';
 
 function MainImage(props) {
+    const image = `https://mark-ikea-image-view.s3.us-east-2.amazonaws.com/${props.imgId}/Image-${props.imgNum}.jpeg`
     return(
-        <div>Main Image rendering</div>
+        <img id="main" src={image} />
     );
 };
 
