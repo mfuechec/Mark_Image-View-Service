@@ -39,16 +39,19 @@ React.Component {
     }
 
     onClickSide(event) {
-        console.log(this);
-        const target = event.target.src;
-        const split = target.split('Image-')
-        const anotherSplit = split[1].split('.');
-        const id = anotherSplit[0];
+        const id = parseInt(event.target.src.split('Image-')[1].split('.')[0]);
+        for (var i = 1; i < this.state.numOfImgs + 1; i++) {
+            if (i === id) {
+                const borderable = document.getElementsByClassName(`side${i}`);
+                borderable[0].attributes[0].nodeValue = `side side${i} bordered`;
+            } else {
+                const notBorderable = document.getElementsByClassName(`side${i}`);
+                notBorderable[0].attributes[0].nodeValue = `side side${i}`;
+            }
+        }
         this.setState({
             imageNumber: id,
         })
-        const borderable = document.getElementsByClassName(`side${this.state.imageNumber}`)
-        // Add a border to this bitch
     }
 
     onClickMain() {

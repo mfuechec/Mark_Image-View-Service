@@ -36,3 +36,8 @@
 .selectedSide {
     border: 2px solid black;
 }
+
+.bordered {
+    border-color: #666;
+    border-width: 2px;
+}
