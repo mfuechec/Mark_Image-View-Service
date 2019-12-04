@@ -17,10 +17,32 @@ React.Component {
         this.getImageData.bind(this);
         this.onClickSide.bind(this);
         this.onClickMain.bind(this);
+        this.setBorder.bind(this);
+        this.animate.bind(this);
     }
 
     componentDidMount() {
         this.getImageData();
+        this.setBorder();
+        this.render();
+    }
+
+    animate() {
+        const selectedImage = this.state.imageNumber;
+
+    }
+
+    setBorder(selected) {
+        selected = selected || 1;
+        for (var i = 1; i < this.state.numOfImgs + 1; i++) {
+            if (i === selected) {
+                const borderable = document.getElementsByClassName(`side${i}`);
+                borderable[0].attributes[0].nodeValue = `side side${i} bordered`;
+            } else {
+                const notBorderable = document.getElementsByClassName(`side${i}`);
+                notBorderable[0].attributes[0].nodeValue = `side side${i}`;
+            }
+        }
     }
 
     getImageData() {
@@ -40,18 +62,11 @@ React.Component {
 
     onClickSide(event) {
         const id = parseInt(event.target.src.split('Image-')[1].split('.')[0]);
-        for (var i = 1; i < this.state.numOfImgs + 1; i++) {
-            if (i === id) {
-                const borderable = document.getElementsByClassName(`side${i}`);
-                borderable[0].attributes[0].nodeValue = `side side${i} bordered`;
-            } else {
-                const notBorderable = document.getElementsByClassName(`side${i}`);
-                notBorderable[0].attributes[0].nodeValue = `side side${i}`;
-            }
-        }
+        this.setBorder(id);
         this.setState({
             imageNumber: id,
         })
+        this.animate();
     }
 
     onClickMain() {
@@ -61,15 +76,18 @@ React.Component {
     onClickArrow(event) {
         if (event.target.className.baseVal === "left" && this.state.imageNumber > 1) {
             var currentImage = this.state.imageNumber;
+            this.setBorder(currentImage - 1);
             this.setState({
                 imageNumber: currentImage - 1
             })
         } else if (event.target.className.baseVal === "right" && this.state.imageNumber < this.state.numOfImgs) {
             var currentImage = this.state.imageNumber;
+            this.setBorder(currentImage + 1);
             this.setState({
                 imageNumber: currentImage + 1
             })
         }
+        this.animate();
     }
 
     render() {
@@ -79,7 +97,7 @@ React.Component {
                 <SideImages imgId={this.state.selectedItem} onClick={this.onClickSide.bind(this)} numOfImgs={this.state.numOfImgs} imgNum={this.state.imageNumber} />
                 </div>
                 <div id="m_main_image">
-                <MainImage onScroll={this.onClickArrow.bind(this)} onClick={this.onClickMain.bind(this)} imgId={this.state.selectedItem} imgNum={this.state.imageNumber}/>
+                <MainImage numOfImgs={this.state.numOfImgs} onScroll={this.onClickArrow.bind(this)} onClick={this.onClickMain.bind(this)} imgId={this.state.selectedItem} imgNum={this.state.imageNumber}/>
                 </div>
                 {/* <div id="modal">
                 <Modal onClick={this.onClickModal.bind(this)} />

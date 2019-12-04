@@ -1,9 +1,22 @@
-#main {
-    height: 488px;
+#mainImgsViewer {
     width: 488px;
+    overflow: hidden;
+    margin: 0 auto;
 }
 
-#main:hover {
+.mainImages {
+    height: 488px;
+    width: 488px;
+    max-width: 100%;
+}
+
+.mainImages img {
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+.mainImages:hover {
     cursor: zoom-in;
 }
 
@@ -43,13 +56,13 @@
 }
 
 #leftSvg {
-    width: 42.66px;
-    height: 42.66px;
+    width: 35px;
+    height: 35px;
 }
 
 #rightSvg {
-    width: 42.66px;
-    height: 42.66px;
+    width: 35px;
+    height: 35px;
 }
 
 #mainImgContainer {
@@ -57,4 +70,43 @@
     align-items: center;
     height: 482.66px;
     width: 568px;
+    overflow: hidden;
+    margin: 0 auto;
 }
+
+@keyframes gallerymover1 {
+    from {right: 0px;}
+    to {right: 0px;}
+}
+
+@keyframes gallerymover2 {
+    from {right: 0px;}
+    to {right: 488px;}
+}
+
+@keyframes gallerymover3 {
+    from {right: 0px;}
+    to {right: 976px;}
+}
+
+@keyframes gallerymover4 {
+    from {right: 0px;}
+    to {right: 1464;}
+}
+
+@keyframes gallerymover5 {
+    from {right: 0px;}
+    to {right: 1952px;}
+}
+
+@keyframes gallerymover6 {
+    from {right: 0px;}
+    to {right: 2440px;}
+}
+
+#mainImgGallery {
+    position: relative;
+    display: flex;
+}
+
+/* Make a bunch of animations and activate whichever one matches the number of the currently selected image */
