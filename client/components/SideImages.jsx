@@ -11,5 +11,3 @@ function SideImages(props) {
 };
 
 export default SideImages;
-
-// Add the border highlighting to App

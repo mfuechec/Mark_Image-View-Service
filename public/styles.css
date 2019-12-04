@@ -41,3 +41,20 @@
     border-color: #666;
     border-width: 2px;
 }
+
+#leftSvg {
+    width: 42.66px;
+    height: 42.66px;
+}
+
+#rightSvg {
+    width: 42.66px;
+    height: 42.66px;
+}
+
+#mainImgContainer {
+    display: flex;
+    align-items: center;
+    height: 482.66px;
+    width: 568px;
+}

@@ -58,6 +58,20 @@ React.Component {
         //This should throw up a modal with all images
     }
 
+    onClickArrow(event) {
+        if (event.target.className.baseVal === "left" && this.state.imageNumber > 1) {
+            var currentImage = this.state.imageNumber;
+            this.setState({
+                imageNumber: currentImage - 1
+            })
+        } else if (event.target.className.baseVal === "right" && this.state.imageNumber < this.state.numOfImgs) {
+            var currentImage = this.state.imageNumber;
+            this.setState({
+                imageNumber: currentImage + 1
+            })
+        }
+    }
+
     render() {
         return (
             <div id="m_main_container">
@@ -65,8 +79,11 @@ React.Component {
                 <SideImages imgId={this.state.selectedItem} onClick={this.onClickSide.bind(this)} numOfImgs={this.state.numOfImgs} imgNum={this.state.imageNumber} />
                 </div>
                 <div id="m_main_image">
-                <MainImage onClick={this.onClickMain.bind(this)} imgId={this.state.selectedItem} imgNum={this.state.imageNumber}/>
+                <MainImage onScroll={this.onClickArrow.bind(this)} onClick={this.onClickMain.bind(this)} imgId={this.state.selectedItem} imgNum={this.state.imageNumber}/>
                 </div>
+                {/* <div id="modal">
+                <Modal onClick={this.onClickModal.bind(this)} />
+                </div> */}
             </div>
         )
     }
