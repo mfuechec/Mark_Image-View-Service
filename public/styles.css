@@ -79,7 +79,8 @@
     display: flex;
 }
 
-
-/* animation: gallerymover 1s steps(10) forwards; */
+.animate {
+    animation: gallerymover 1s steps(10) forwards;
+}
 
 /* Make a bunch of animations and activate whichever one matches the number of the currently selected image */

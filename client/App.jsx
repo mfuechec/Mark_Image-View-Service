@@ -26,12 +26,12 @@ React.Component {
     componentDidMount() {
         this.getImageData();
         this.setBorder();
-        this.render();
     }
 
-    animate() {
+    animate(object) {
         var element = document.getElementById('mainImgGallery');
-        element.style.animation = "";
+        element.classList.remove('animate');
+        void element.offsetWidth
         var sheet = document.styleSheets[0];
         var previous = this.state.previouslySelectedImageNumber;
         var current = this.state.imageNumber;
@@ -51,7 +51,8 @@ React.Component {
                 `
             )
         }
-        element.style.animation = 'gallerymover 1s steps(10) forwards';
+        this.setState(object)
+        element.classList.add('animate');
     }
 
     setBorder(selected) {
@@ -84,6 +85,7 @@ React.Component {
 
     onClickSide(event) {
         const id = parseInt(event.target.src.split('Image-')[1].split('.')[0]);
+        console.log(typeof id)
         this.setBorder(id);
         var newPrev = 0;
         if (this.state.imageNumber !== id) {
@@ -92,8 +94,8 @@ React.Component {
             newPrev = this.state.previouslySelectedImageNumber
         }
         this.setState({
-            previouslySelectedImageNumber: newPrev,
             imageNumber: id,
+            previouslySelectedImageNumber: newPrev,
         }, () => this.animate())
     }
 
