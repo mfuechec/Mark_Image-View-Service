@@ -8,7 +8,7 @@ React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedItem: 5,
+            selectedItem: 1,
             previouslySelectedImageNumber: 1,
             numOfImgs: 2,
             itemName: "",
@@ -31,7 +31,7 @@ React.Component {
     animate(object) {
         var element = document.getElementById('mainImgGallery');
         element.classList.remove('animate');
-        void element.offsetWidth
+        void element.offsetWidth;
         var sheet = document.styleSheets[0];
         var previous = this.state.previouslySelectedImageNumber;
         var current = this.state.imageNumber;

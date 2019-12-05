@@ -80,7 +80,8 @@
 }
 
 .animate {
-    animation: gallerymover 1s steps(10) forwards;
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1);
+    animation: gallerymover .5s steps(50) forwards;
 }
 
 /* Make a bunch of animations and activate whichever one matches the number of the currently selected image */
