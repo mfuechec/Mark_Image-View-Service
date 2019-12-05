@@ -74,39 +74,12 @@
     margin: 0 auto;
 }
 
-@keyframes gallerymover1 {
-    from {right: 0px;}
-    to {right: 0px;}
-}
-
-@keyframes gallerymover2 {
-    from {right: 0px;}
-    to {right: 488px;}
-}
-
-@keyframes gallerymover3 {
-    from {right: 0px;}
-    to {right: 976px;}
-}
-
-@keyframes gallerymover4 {
-    from {right: 0px;}
-    to {right: 1464;}
-}
-
-@keyframes gallerymover5 {
-    from {right: 0px;}
-    to {right: 1952px;}
-}
-
-@keyframes gallerymover6 {
-    from {right: 0px;}
-    to {right: 2440px;}
-}
-
 #mainImgGallery {
     position: relative;
     display: flex;
 }
+
+
+/* animation: gallerymover 1s steps(10) forwards; */
 
 /* Make a bunch of animations and activate whichever one matches the number of the currently selected image */
