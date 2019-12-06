@@ -1,18 +1,20 @@
 import React from 'react';
 import axios from 'axios';
-import MainImage from './components/mainImage.jsx';
-import SideImages from './components/sideImages.jsx';
+import MainImage from './components/MainImage.jsx';
+import SideImages from './components/SideImages.jsx';
 
 class App extends
 React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedItem: 1,
+            selectedItem: 3,
             previouslySelectedImageNumber: 1,
             numOfImgs: 2,
             itemName: "",
-            numOfVids: 0,
+            videoEmbed: null,
+            videoThumb: null,
+            description: 'High chair with tray, white silver color, silver color',
             imageNumber: 1,
             dummy: true
         }
@@ -21,6 +23,8 @@ React.Component {
         this.onClickMain.bind(this);
         this.setBorder.bind(this);
         this.animate.bind(this);
+        this.onClose.bind(this);
+        this.onVideoClick.bind(this);
     }
 
     componentDidMount() {
@@ -28,7 +32,11 @@ React.Component {
         this.setBorder();
     }
 
-    animate(object) {
+    onVideoClick() {
+        document.getElementById('video').style.display = 'block';
+    }
+
+    animate() {
         var element = document.getElementById('mainImgGallery');
         element.classList.remove('animate');
         void element.offsetWidth;
@@ -51,7 +59,6 @@ React.Component {
                 `
             )
         }
-        this.setState(object)
         element.classList.add('animate');
     }
 
@@ -75,7 +82,9 @@ React.Component {
             this.setState({
                 numOfImgs: data.images,
                 itemName: data.name,
-                numOfVids: data.videos
+                videoEmbed: data.videoEmbed,
+                videoThumb: data.videoThumb,
+                description: data.description
             })
         })
         .catch(function (error) {
@@ -85,7 +94,6 @@ React.Component {
 
     onClickSide(event) {
         const id = parseInt(event.target.src.split('Image-')[1].split('.')[0]);
-        console.log(typeof id)
         this.setBorder(id);
         var newPrev = 0;
         if (this.state.imageNumber !== id) {
@@ -100,7 +108,13 @@ React.Component {
     }
 
     onClickMain() {
-        //This should throw up a modal with all images
+        var modal = document.getElementById("myModal");
+        modal.style.display = 'flex';
+    }
+
+    onClose() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = 'none';
     }
 
     onClickArrow(event) {
@@ -140,14 +154,11 @@ React.Component {
         return (
             <div id="m_main_container">
                 <div id="m_side_images">
-                <SideImages selectedItemId={this.state.selectedItem} onClick={this.onClickSide.bind(this)} numOfImgs={this.state.numOfImgs} imgNum={this.state.imageNumber} />
+                    <SideImages videoThumb={this.state.videoThumb} onVideoClick={this.onVideoClick} selectedItemId={this.state.selectedItem} onClick={this.onClickSide.bind(this)} numOfImgs={this.state.numOfImgs} imgNum={this.state.imageNumber} />
                 </div>
                 <div id="m_main_image">
-                <MainImage previousImage={this.state.previouslySelectedImageNumber} numOfImgs={this.state.numOfImgs} onScroll={this.onClickArrow.bind(this)} onClick={this.onClickMain.bind(this)} selectedItemId={this.state.selectedItem} imgNum={this.state.imageNumber}/>
+                    <MainImage videoEmbed={this.state.videoEmbed} onClose={this.onClose.bind(this)} previousImage={this.state.previouslySelectedImageNumber} numOfImgs={this.state.numOfImgs} onScroll={this.onClickArrow.bind(this)} onClick={this.onClickMain.bind(this)} selectedItemId={this.state.selectedItem} imgNum={this.state.imageNumber}/>
                 </div>
-                {/* <div id="modal">
-                <Modal onClick={this.onClickModal.bind(this)} />
-                </div> */}
             </div>
         )
     }
