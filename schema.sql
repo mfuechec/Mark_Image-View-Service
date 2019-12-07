@@ -42,7 +42,7 @@ CREATE TABLE Products (
    id,
    'HAVSTEN',
    8,
-   'https://www.youtube.com/embed/gnHDOmifrfA?enablejsapi=1',
+   'https://www.youtube.com/embed/gnHDOmifrfA?autoplay=1;enablejsapi=1',
    'https://mmapi.ikea.com/im/productfilms/images/fe000149_445x250_00h_00m_01s.jpg?imPolicy=thumbnail',
    'Chair, in/outdoor, beige, 32 5/8x37x35 3/8 "'
  );
@@ -68,7 +68,7 @@ CREATE TABLE Products (
    7,
    null,
    null,
-   `Child's desk chair, white`
+   'Childs desk chair, white'
  );
   INSERT INTO Products VALUES (
    id,
@@ -162,7 +162,7 @@ CREATE TABLE Products (
    id,
    'TROLLBERGET',
    6,
-   'https://www.youtube.com/embed/4sexn7JH5_s?enablejsapi=1',
+   'https://www.youtube.com/embed/4sexn7JH5_s?autoplay=1;enablejsapi=1',
    'https://ww8.ikea.com/ext/umb/media/1599/tn-trollberget.jpg?imPolicy=thumbnail',
    'Sit/stand support, Glose black'
  );
@@ -281,7 +281,7 @@ CREATE TABLE Products (
    2,
    null,
    null,
-   `Children's tent, caravan`
+   'Childrens tent, caravan'
  );
   INSERT INTO Products VALUES (
    id,
@@ -295,8 +295,8 @@ CREATE TABLE Products (
    id,
    'MINNEN',
    8,
-   'https://mmapi.ikea.com/embed/?item_number=59124621&jsapi=1',
-   'https://mmapi.ikea.com/im/productfilms/images/fe000157_445x250_00h_00m_01s.jpg?imPolicy=thumbnail',
+   null,
+   null,
    'Ext bed frame with slatted bed base, white, 38 1/4x74 3/4 "'
  );
   INSERT INTO Products VALUES (
@@ -446,7 +446,7 @@ CREATE TABLE Products (
    4,
    null,
    null,
-   `Children's potty, white green, green`
+   'Childrens potty, white green, green'
  );
   INSERT INTO Products VALUES (
    id,
@@ -758,7 +758,7 @@ CREATE TABLE Products (
    id,
    'HAVSTEN',
    7,
-   'https://www.youtube.com/embed/gnHDOmifrfA?enablejsapi=1',
+   'https://www.youtube.com/embed/gnHDOmifrfA?autoplay=1;enablejsapi=1',
    'https://ww8.ikea.com/ext/umb/media/1809/tn-havsten.jpg?imPolicy=thumbnail',
    'Loveseat, in/outdoor, without armrests with open end, beige, 64 5/8x37x35 3/8 "'
  );
@@ -790,8 +790,8 @@ CREATE TABLE Products (
    id,
    'SOLLERÖN',
    8,
-   'https://mmapi.ikea.com/embed/?item_number=09252687&jsapi=1',
-   'https://mmapi.ikea.com/im/productfilms/images/fe000149_445x250_00h_00m_01s.jpg?imPolicy=thumbnail',
+   null,
+   null,
    '3-seat modular sofa, outdoor, with footstool brown brown, Frösön/Duvholmen beige, 87 3/4x56 3/4x34 5/8 "'
  );
   INSERT INTO Products VALUES (

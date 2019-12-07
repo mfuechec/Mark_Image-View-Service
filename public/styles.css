@@ -1,14 +1,34 @@
-#mainImgsViewer {
-    width: 488px;
-    overflow: hidden;
-    margin: 0 auto;
+.m_root {
+    width: 100vw;
 }
 
-.mainImages {
-    height: 488px;
-    width: 488px;
-    max-width: 100%;
+@media (min-width: 1215px) {
+    #mainImgsViewer {
+        width: 579px;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    .mainImages {
+        height: 579px;
+        width: 579px;
+        max-width: 100%;
+    }
 }
+
+@media (max-width: 1214px) {
+    #mainImgsViewer {
+        width: 45.770751vw;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    
+    .mainImages {
+        height: 45.770751vw;
+        width: 45.770751vw;
+        max-width: 100%;
+    }
+}
+
 
 .mainImages img {
     padding: 0;
@@ -22,15 +42,18 @@
 
 #m_main_container {
     display: flex;
+    width: 61.5810277vw;
+    height: 53.1351779vw;
+    padding-left: 2.5rem;
 }
 
 #m_side_images {
-    width: 155px;
+    width: 12.2529644vw;
 }
 
 #m_main_image {
-    height: 482.66px;
-    width: 568px;
+    height: 45.770751vw;
+    width: 45.770751vw;
 }
 
 .side:hover {
@@ -41,26 +64,21 @@
     border: 2px solid black;
 }
 
-.bordered {
-    border-color: #666;
-    border-width: 2px;
-}
-
 #leftSvg {
-    width: 35px;
-    height: 35px;
+    width: 2.66667rem;
+    height: 2.66667rem
 }
 
 #rightSvg {
-    width: 35px;
-    height: 35px;
+    width: 2.66667rem;
+    height: 2.66667rem
 }
 
 #mainImgContainer {
     display: flex;
     align-items: center;
-    height: 482.66px;
-    width: 568px;
+    width: 52.0948617vw;
+    height: 45.3486166vw;
     overflow: hidden;
     margin: 0 auto;
 }
@@ -122,22 +140,11 @@
 img.side {
     position: relative;
     display: flex;
-    width: 62px;
-    height: 62px;
+    width: 60px;
+    height: 60px;
     border: 1px grey solid;
     box-sizing: border-box;
     margin-top: .66667rem;
-}
-
-#thumbNail {
-    position: relative;
-    display: flex;
-    width: 62px;
-    height: 62px;
-    border: 1px grey solid;
-    box-sizing: border-box;
-    margin-top: .66667rem;
-    cursor: pointer;
 }
 
 #video {
@@ -146,4 +153,16 @@ img.side {
     width: 100%;
     height: 100%;
     z-index: 1;
+    width: 45.770751vw;
+    height: 45.770751vw;
+}
+
+.bordered {
+    position: relative;
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border: 2px #666 solid;
+    box-sizing: border-box;
+    margin-top: .66667rem;
 }

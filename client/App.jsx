@@ -9,12 +9,12 @@ React.Component {
         super(props);
         this.state = {
             selectedItem: 3,
-            previouslySelectedImageNumber: 1,
-            numOfImgs: 2,
+            previouslySelectedImageNumber: 0,
+            numOfImgs: 0,
             itemName: "",
             videoEmbed: null,
             videoThumb: null,
-            description: 'High chair with tray, white silver color, silver color',
+            description: '',
             imageNumber: 1,
             dummy: true
         }
@@ -25,15 +25,18 @@ React.Component {
         this.animate.bind(this);
         this.onClose.bind(this);
         this.onVideoClick.bind(this);
+        this.setBorder.bind(this);
     }
 
     componentDidMount() {
         this.getImageData();
-        this.setBorder();
     }
 
     onVideoClick() {
         document.getElementById('video').style.display = 'block';
+        const borderable = document.getElementsByClassName('video');
+        borderable[0].attributes[0].nodeValue = 'video bordered';
+        this.setBorder(10);
     }
 
     animate() {
@@ -53,8 +56,8 @@ React.Component {
             sheet.insertRule(
                 `
                 @keyframes gallerymover {
-                    0% {right: ${(previous * 488) - 488}px;}
-                    100% {right: ${(current * 488) - 488}px;}
+                    0% {right: ${(previous * 100) - 100}%;}
+                    100% {right: ${(current * 100) - 100}%;}
                 }
                 `
             )
@@ -64,10 +67,14 @@ React.Component {
 
     setBorder(selected) {
         selected = selected || 1;
+        if (this.state.videoThumb !== null && selected !== 10) {
+            const borderable = document.getElementsByClassName('video');
+            borderable[0].attributes[0].nodeValue = 'side video';
+        }
         for (var i = 1; i < this.state.numOfImgs + 1; i++) {
             if (i === selected) {
                 const borderable = document.getElementsByClassName(`side${i}`);
-                borderable[0].attributes[0].nodeValue = `side side${i} bordered`;
+                borderable[0].attributes[0].nodeValue = `side${i} bordered`;
             } else {
                 const notBorderable = document.getElementsByClassName(`side${i}`);
                 notBorderable[0].attributes[0].nodeValue = `side side${i}`;
@@ -86,6 +93,7 @@ React.Component {
                 videoThumb: data.videoThumb,
                 description: data.description
             })
+            this.setBorder(1);
         })
         .catch(function (error) {
             console.log(error);
@@ -93,6 +101,9 @@ React.Component {
     }
 
     onClickSide(event) {
+        if (this.state.videoThumb !== null) {
+            document.getElementById('video').style.display = 'none';
+        }
         const id = parseInt(event.target.src.split('Image-')[1].split('.')[0]);
         this.setBorder(id);
         var newPrev = 0;
@@ -152,12 +163,14 @@ React.Component {
 
     render() {
         return (
-            <div id="m_main_container">
-                <div id="m_side_images">
-                    <SideImages videoThumb={this.state.videoThumb} onVideoClick={this.onVideoClick} selectedItemId={this.state.selectedItem} onClick={this.onClickSide.bind(this)} numOfImgs={this.state.numOfImgs} imgNum={this.state.imageNumber} />
-                </div>
-                <div id="m_main_image">
-                    <MainImage videoEmbed={this.state.videoEmbed} onClose={this.onClose.bind(this)} previousImage={this.state.previouslySelectedImageNumber} numOfImgs={this.state.numOfImgs} onScroll={this.onClickArrow.bind(this)} onClick={this.onClickMain.bind(this)} selectedItemId={this.state.selectedItem} imgNum={this.state.imageNumber}/>
+            <div className='m_root'>
+                <div id="m_main_container">
+                    <div id="m_side_images">
+                        <SideImages videoThumb={this.state.videoThumb} onVideoClick={this.onVideoClick.bind(this)} selectedItemId={this.state.selectedItem} onClick={this.onClickSide.bind(this)} numOfImgs={this.state.numOfImgs} imgNum={this.state.imageNumber} />
+                    </div>
+                    <div id="m_main_image">
+                        <MainImage videoEmbed={this.state.videoEmbed} onClose={this.onClose.bind(this)} previousImage={this.state.previouslySelectedImageNumber} numOfImgs={this.state.numOfImgs} onScroll={this.onClickArrow.bind(this)} onClick={this.onClickMain.bind(this)} selectedItemId={this.state.selectedItem} imgNum={this.state.imageNumber}/>
+                    </div>
                 </div>
             </div>
         )
