@@ -63,7 +63,7 @@ React.Component {
     }
 
     autoplayVideo() {
-        document.getElementById('video').play();
+        document.getElementById('video').allow = 'autoplay'
     }
 
     animate() {

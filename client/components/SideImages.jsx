@@ -2,12 +2,15 @@ import React from 'react';
 
 function SideImages(props) {
     const items = [];
+    console.log(props.videoThumb)
     for (var i = 1; i < props.numOfImgs + 1; i++) {
         if (i === 2 && props.videoThumb !== null) {
-            var videoThumbnail = props.videoThumb;
             items.push(
-                <img key='video' className='side video' src={videoThumbnail} onClick={props.onVideoClick} />
-            );
+                <span className='videoThumbContainer'>
+                    <img key='video' className='side video' src={props.videoThumb} onClick={props.onVideoClick} />
+                    <img key='playBtn' className='play' src='https://mmapi.ikea.com/player/ikea/img-btn/play_60px_2x.png' ></img>
+                </span>
+                );
         }
         const cName = `side side${i}`;
         var image = `https://mark-ikea-image-view.s3.us-east-2.amazonaws.com/${props.selectedItemId}/Image-${i}.jpeg`;

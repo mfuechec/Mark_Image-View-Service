@@ -14,6 +14,10 @@
         width: 579px;
         max-width: 100%;
     }
+
+    span.videoThumbContainer {
+        margin-bottom: 1.4rem;
+    }
 }
 
 @media (max-width: 1214px) and (min-width: 1200px) {
@@ -26,6 +30,10 @@
         height: 47.3975vw;
         width: 47.3975vw;
         max-width: 100%;
+    }
+
+    span.videoThumbContainer {
+        margin-bottom: 1.4rem;
     }
 }
 
@@ -46,13 +54,17 @@
         width: 48vw;
         max-width: 100%;
     }
+
+    span.videoThumbContainer {
+        margin-bottom: 1.4rem;
+    }
 }
 
 @media (max-width: 1023px) and (min-width: 768px) { 
     #sideImagesContainer {
         display: flex;
         flex-direction: row;
-        overflow: wrap;
+        flex-wrap: wrap;
         width: 55vw;
     }
 
@@ -80,6 +92,10 @@
 
     .bordered {
         margin-right: .66667rem;
+    }
+
+    span.videoThumbContainer {
+        margin-right: .7rem;
     }
 }
 
@@ -115,6 +131,10 @@
 
     .bordered {
         margin-right: .66667rem;
+    }
+
+    span.videoThumbContainer {
+        margin-right: .7rem;
     }
 }
 
@@ -287,12 +307,15 @@ img.side {
     width: 50%;
     display: flex;
     flex-direction: row;
+    align-content: center;
+    margin: auto;
 }
 
 #m_RightSpan {
     width: 50%;
     display: flex;
     flex-direction: row;
+    align-content: center;
 }
 
 #m_ModalProductName {
@@ -301,11 +324,31 @@ img.side {
 }
 
 #m_modalSvgLeft {
-    width: 50px;
+    width: 72px;
+    height: 48px;
 }
 
 #m_modalSvgRight {
-    width: 50px;
+    width: 72px;
+    height: 48px;
     background: #0058f3;
     fill: #fff;
+}
+
+.play {
+    position: absolute;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    margin-top: 1.25rem;
+    margin-left: .75rem;
+}
+
+.videoThumbContainer {
+    position: relative;
+    display: flex;
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
 }

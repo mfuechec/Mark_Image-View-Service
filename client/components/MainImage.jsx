@@ -6,7 +6,7 @@ function MainImage(props) {
     var leftSvg;
     var rightSvg;
     if (props.videoEmbed !== null) {
-        var video = [<iframe allow='' id='video' key='videoPlayer' playsInline src={props.videoEmbed}></iframe>];
+        var video = [<iframe id='video' key='videoPlayer' playsInline src={props.videoEmbed}></iframe>];
     } else {
         var video = [<></>];
         leftSvg = <svg key='leftSvg' onClick={props.onScroll} id="leftSvg" className="left" ><path className="left" d="M11.7,18.22,6.43,13H20V11H6.4l5.31-5.37L10.29,4.22,2.59,12l7.71,7.64Z"></path></svg>

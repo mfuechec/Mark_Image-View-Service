@@ -8,7 +8,7 @@ function BuyItemModal(props) {
                 <img id="m_buyItemModalThumbnail" src={`https://mark-ikea-image-view.s3.us-east-2.amazonaws.com/${props.selectedItemId}/Image-1.jpeg`} ></img>
                 <div id="m_ModalProductName">
                     <div>{props.itemName}</div>
-                    <p>Show price</p>
+                    <div>Show price</div>
                 </div>
             </span>
             <span id='m_RightSpan'>
