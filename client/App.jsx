@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import MainImage from './components/MainImage.jsx';
 import SideImages from './components/SideImages.jsx';
+import BuyItemModal from './components/BuyItemModal.jsx';
 
 class App extends
 React.Component {
@@ -26,10 +27,31 @@ React.Component {
         this.onClose.bind(this);
         this.onVideoClick.bind(this);
         this.setBorder.bind(this);
+        this.onScroll.bind(this);
+        this.autoplayVideo.bind(this);
     }
 
     componentDidMount() {
         this.getImageData();
+        window.addEventListener('scroll', () => {
+            this.onScroll();
+        })
+        window.addEventListener('productChanged', (event) => {
+            this.setState({
+              selectedItem: event.detail.productId,
+            }, () => {
+              this.getImageData();
+            });
+          });
+    }
+
+    onScroll() {
+        if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+            document.getElementById('m_buyItemModal').style.display = 'block';
+        }
+        if (document.body.scrollTop < 700 || document.documentElement.scrollTop < 700) {
+            document.getElementById('m_buyItemModal').style.display = 'none';
+        }
     }
 
     onVideoClick() {
@@ -37,31 +59,33 @@ React.Component {
         const borderable = document.getElementsByClassName('video');
         borderable[0].attributes[0].nodeValue = 'video bordered';
         this.setBorder(10);
+        this.autoplayVideo();
+    }
+
+    autoplayVideo() {
+        document.getElementById('video').play();
     }
 
     animate() {
         var element = document.getElementById('mainImgGallery');
         element.classList.remove('animate');
         void element.offsetWidth;
-        var sheet = document.styleSheets[0];
+        if (document.getElementById('style') !== null || undefined) {
+            var sheetToBeRemoved = document.getElementById('styleSheetId');
+            var sheetParent = sheetToBeRemoved.parentNode;
+            sheetParent.removeChild(sheetToBeRemoved);
+        }
         var previous = this.state.previouslySelectedImageNumber;
         var current = this.state.imageNumber;
-        for (var i = sheet.rules.length-1; i > -1; i--) {
-            if (sheet.rules[i].name === "gallerymover" && sheet.deleteRule(i) !== undefined) {
-                sheet.deleteRule(i)
-                console.log(sheet)
+        var sheet = document.createElement('style')
+        sheet.innerHTML = 
+            `
+            @keyframes gallerymover {
+                0% {right: ${(previous * 100) - 100}%;}
+                100% {right: ${(current * 100) - 100}%;}
             }
-        }
-        if (sheet.insertRule !== undefined) {
-            sheet.insertRule(
-                `
-                @keyframes gallerymover {
-                    0% {right: ${(previous * 100) - 100}%;}
-                    100% {right: ${(current * 100) - 100}%;}
-                }
-                `
-            )
-        }
+            `;
+        document.body.appendChild(sheet);
         element.classList.add('animate');
     }
 
@@ -83,7 +107,7 @@ React.Component {
     }
 
     getImageData() {
-        axios.get(`/${this.state.selectedItem}`)
+        axios.get(`/${this.state.selectedItem}`, {baseURL: 'http://markymark-env.dijtmsca46.us-east-2.elasticbeanstalk.com/'})
         .then( (response) => {
             const data = response.data[0];
             this.setState({
@@ -121,11 +145,13 @@ React.Component {
     onClickMain() {
         var modal = document.getElementById("myModal");
         modal.style.display = 'flex';
+        document.documentElement.style.overflow = 'hidden';
     }
 
     onClose() {
         var modal = document.getElementById("myModal");
         modal.style.display = 'none';
+        document.documentElement.style.overflow = 'auto';
     }
 
     onClickArrow(event) {
@@ -171,6 +197,9 @@ React.Component {
                     <div id="m_main_image">
                         <MainImage videoEmbed={this.state.videoEmbed} onClose={this.onClose.bind(this)} previousImage={this.state.previouslySelectedImageNumber} numOfImgs={this.state.numOfImgs} onScroll={this.onClickArrow.bind(this)} onClick={this.onClickMain.bind(this)} selectedItemId={this.state.selectedItem} imgNum={this.state.imageNumber}/>
                     </div>
+                </div>
+                <div id='m_buyItemModal'>
+                    <BuyItemModal itemName={this.state.itemName} selectedItemId={this.state.selectedItem}></BuyItemModal>
                 </div>
             </div>
         )

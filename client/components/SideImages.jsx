@@ -13,7 +13,7 @@ function SideImages(props) {
         var image = `https://mark-ikea-image-view.s3.us-east-2.amazonaws.com/${props.selectedItemId}/Image-${i}.jpeg`;
         items.push(<img onClick={props.onClick} className={cName} key={i} src={image} />)
     }
-    return <div>{items}</div>
+    return <div id="sideImagesContainer">{items}</div>
 };
 
 export default SideImages;
