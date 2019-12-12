@@ -9,7 +9,7 @@ React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedItem: 4,
+            selectedItem: 3,
             previouslySelectedImageNumber: 0,
             numOfImgs: 0,
             itemName: "",
