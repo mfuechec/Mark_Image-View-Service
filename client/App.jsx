@@ -9,7 +9,7 @@ React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedItem: 3,
+            selectedItem: 4,
             previouslySelectedImageNumber: 0,
             numOfImgs: 0,
             itemName: "",
@@ -28,7 +28,6 @@ React.Component {
         this.onVideoClick.bind(this);
         this.setBorder.bind(this);
         this.onScroll.bind(this);
-        this.autoplayVideo.bind(this);
         this.hideImages.bind(this);
         this.displayImages.bind(this);
     }
@@ -48,10 +47,10 @@ React.Component {
     }
 
     onScroll() {
-        if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
-            document.getElementById('m_buyItemModal').style.display = 'block';
+        if (window.scrollY > 700) {
+            document.getElementById('m_buyItemModal').style.display = 'flex';
         }
-        if (document.body.scrollTop < 700 || document.documentElement.scrollTop < 700) {
+        if (window.scrollY < 699) {
             document.getElementById('m_buyItemModal').style.display = 'none';
         }
     }
@@ -62,10 +61,6 @@ React.Component {
         borderable[0].attributes[0].nodeValue = 'video bordered';
         this.setBorder(10);
         this.hideImages();
-    }
-
-    autoplayVideo() {
-        document.getElementById('video').playVideo();
     }
 
     animate() {
@@ -139,7 +134,6 @@ React.Component {
         this.displayImages();
         if (this.state.videoThumb !== null) {
             document.getElementById('video').style.display = 'none';
-            document.getElementById('video').autoplay = false;
         }
         const id = parseInt(event.target.src.split('Image-')[1].split('.')[0]);
         this.setBorder(id);

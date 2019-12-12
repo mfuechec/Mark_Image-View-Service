@@ -45,7 +45,7 @@ CREATE TABLE Products (
    id,
    'HAVSTEN',
    8,
-   'https://www.youtube.com/embed/gnHDOmifrfA?autoplay=1;enablejsapi=1',
+   'https://www.youtube.com/embed/gnHDOmifrfA?enablejsapi=1',
    'https://img.youtube.com/vi/gnHDOmifrfA/0.jpg',
    'Chair, in/outdoor, beige, 32 5/8x37x35 3/8 "'
  );
@@ -165,7 +165,7 @@ CREATE TABLE Products (
    id,
    'TROLLBERGET',
    6,
-   'https://www.youtube.com/embed/4sexn7JH5_s?autoplay=1;enablejsapi=1',
+   'https://www.youtube.com/embed/4sexn7JH5_s?enablejsapi=1',
    'https://img.youtube.com/vi/4sexn7JH5_s/0.jpg',
    'Sit/stand support, Glose black'
  );
@@ -761,7 +761,7 @@ CREATE TABLE Products (
    id,
    'HAVSTEN',
    7,
-   'https://www.youtube.com/embed/gnHDOmifrfA?autoplay=1;enablejsapi=1',
+   'https://www.youtube.com/embed/gnHDOmifrfA?enablejsapi=1',
    'https://img.youtube.com/vi/gnHDOmifrfA/0.jpg',
    'Loveseat, in/outdoor, without armrests with open end, beige, 64 5/8x37x35 3/8 "'
  );
