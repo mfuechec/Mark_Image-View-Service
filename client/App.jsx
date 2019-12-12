@@ -29,6 +29,8 @@ React.Component {
         this.setBorder.bind(this);
         this.onScroll.bind(this);
         this.autoplayVideo.bind(this);
+        this.hideImages.bind(this);
+        this.displayImages.bind(this);
     }
 
     componentDidMount() {
@@ -59,11 +61,11 @@ React.Component {
         const borderable = document.getElementsByClassName('video');
         borderable[0].attributes[0].nodeValue = 'video bordered';
         this.setBorder(10);
-        this.autoplayVideo();
+        this.hideImages();
     }
 
     autoplayVideo() {
-        document.getElementById('video').allow = 'autoplay'
+        document.getElementById('video').playVideo();
     }
 
     animate() {
@@ -106,6 +108,14 @@ React.Component {
         }
     }
 
+    displayImages() {
+        document.getElementById('mainImgGallery').style.display = 'flex';
+    }
+
+    hideImages() {
+        document.getElementById('mainImgGallery').style.display = 'none';
+    }
+
     getImageData() {
         axios.get(`/${this.state.selectedItem}`, {baseURL: 'http://markymark-env.dijtmsca46.us-east-2.elasticbeanstalk.com/'})
         .then( (response) => {
@@ -118,6 +128,7 @@ React.Component {
                 description: data.description
             })
             this.setBorder(1);
+            this.displayImages();
         })
         .catch(function (error) {
             console.log(error);
@@ -125,8 +136,10 @@ React.Component {
     }
 
     onClickSide(event) {
+        this.displayImages();
         if (this.state.videoThumb !== null) {
             document.getElementById('video').style.display = 'none';
+            document.getElementById('video').autoplay = false;
         }
         const id = parseInt(event.target.src.split('Image-')[1].split('.')[0]);
         this.setBorder(id);
@@ -155,6 +168,7 @@ React.Component {
     }
 
     onClickArrow(event) {
+        this.displayImages();
         var currentImage = this.state.imageNumber;
         if (event.target.className.baseVal === "left") {
             if (this.state.imageNumber > 1) {

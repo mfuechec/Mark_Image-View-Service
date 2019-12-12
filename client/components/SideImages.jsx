@@ -2,13 +2,12 @@ import React from 'react';
 
 function SideImages(props) {
     const items = [];
-    console.log(props.videoThumb)
     for (var i = 1; i < props.numOfImgs + 1; i++) {
         if (i === 2 && props.videoThumb !== null) {
             items.push(
                 <span className='videoThumbContainer'>
                     <img key='video' className='side video' src={props.videoThumb} onClick={props.onVideoClick} />
-                    <img key='playBtn' className='play' src='https://mmapi.ikea.com/player/ikea/img-btn/play_60px_2x.png' ></img>
+                    <img key='playBtn' onClick={props.onVideoClick} className='play' src='https://mmapi.ikea.com/player/ikea/img-btn/play_60px_2x.png' ></img>
                 </span>
                 );
         }

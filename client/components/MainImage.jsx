@@ -23,11 +23,11 @@ function MainImage(props) {
             return(
                 <div id="mainImgContainer">
                     {leftSvg}
+                        {video}
                     <div id='mainImgsViewer'>
-                            {video}
+                        <Modal onClose={props.onClose} selectedItemId={props.selectedItemId} numOfImgs={props.numOfImgs} />
                         <div id='mainImgGallery' style={width}>
                             {images}
-                            <Modal onClose={props.onClose} selectedItemId={props.selectedItemId} numOfImgs={props.numOfImgs} />
                         </div>
                     </div>
                     {rightSvg}
