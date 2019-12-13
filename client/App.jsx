@@ -17,7 +17,7 @@ React.Component {
             videoThumb: null,
             description: '',
             imageNumber: 1,
-            dummy: true
+            createdSheet: false
         }
         this.getImageData.bind(this);
         this.onClickSide.bind(this);
@@ -30,6 +30,7 @@ React.Component {
         this.onScroll.bind(this);
         this.hideImages.bind(this);
         this.displayImages.bind(this);
+        this.changeRule.bind(this);
     }
 
     componentDidMount() {
@@ -67,23 +68,49 @@ React.Component {
         var element = document.getElementById('mainImgGallery');
         element.classList.remove('animate');
         void element.offsetWidth;
-        if (document.getElementById('style') !== null || undefined) {
-            var sheetToBeRemoved = document.getElementById('styleSheetId');
-            var sheetParent = sheetToBeRemoved.parentNode;
-            sheetParent.removeChild(sheetToBeRemoved);
+        if (this.state.createdSheet) {
+            this.changeRule();
+        } else {
+            var previous = this.state.previouslySelectedImageNumber;
+            var current = this.state.imageNumber;
+            var sheet = document.createElement('style')
+            sheet.innerHTML = 
+                `
+                @keyframes gallerymover {
+                    0% {right: ${(previous * 100) - 100}%;}
+                    100% {right: ${(current * 100) - 100}%;}
+                }
+                `;
+            document.body.appendChild(sheet);
+            element.classList.add('animate');
+            this.setState({
+                createdSheet: true
+            })
+
         }
+    }
+
+    changeRule() {
+        var element = document.getElementById('mainImgGallery');
         var previous = this.state.previouslySelectedImageNumber;
         var current = this.state.imageNumber;
-        var sheet = document.createElement('style')
-        sheet.innerHTML = 
-            `
-            @keyframes gallerymover {
-                0% {right: ${(previous * 100) - 100}%;}
-                100% {right: ${(current * 100) - 100}%;}
+        for (var i = 0; i < document.styleSheets.length; i++) {
+            if (document.styleSheets[i].href === null) {
+                if (document.styleSheets[i].cssRules[0].name === 'gallerymover') {
+                    const sheet = document.styleSheets[i];
+                    sheet.deleteRule(0);
+                    sheet.insertRule(
+                        `
+                        @keyframes gallerymover {
+                            0% {right: ${(previous * 100) - 100}%;}
+                            100% {right: ${(current * 100) - 100}%;}
+                        }
+                        `
+                    )
+                    element.classList.add('animate');
+                }
             }
-            `;
-        document.body.appendChild(sheet);
-        element.classList.add('animate');
+        }
     }
 
     setBorder(selected) {
