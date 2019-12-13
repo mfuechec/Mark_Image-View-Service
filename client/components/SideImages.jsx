@@ -4,10 +4,13 @@ function SideImages(props) {
     const items = [];
     for (var i = 1; i < props.numOfImgs + 1; i++) {
         if (i === 2 && props.videoThumb !== null) {
+            var vidKey = `video${i}`;
+            var btnKey = `playBtn${i}`;
+            var spanKey = `span${i}`;
             items.push(
-                <span className='videoThumbContainer'>
-                    <img key='video' className='side video' src={props.videoThumb} onClick={props.onVideoClick} />
-                    <img key='playBtn' onClick={props.onVideoClick} className='play' src='https://mmapi.ikea.com/player/ikea/img-btn/play_60px_2x.png' ></img>
+                <span key={spanKey} className='videoThumbContainer'>
+                    <img key={vidKey} className='side video' src={props.videoThumb} onClick={props.onVideoClick} />
+                    <img key={btnKey} onClick={props.onVideoClick} className='play' src='https://mmapi.ikea.com/player/ikea/img-btn/play_60px_2x.png' ></img>
                 </span>
                 );
         }

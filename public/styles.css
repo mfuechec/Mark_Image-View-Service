@@ -13,6 +13,7 @@
     #m_main_container {
         height: 652.16px;
         width: 779px;
+        padding-left: 2.5rem;
     }
 
     .mainImages {
@@ -30,6 +31,11 @@
     #mainImgsViewer {
         width: 55vw;
         overflow: hidden;
+    }
+
+    #m_main_container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
     }
     
     .mainImages {
@@ -55,6 +61,11 @@
     
     span.videoThumbContainer {
         margin-bottom: 1.4rem;
+    }
+
+    #m_main_container {
+        padding-right: 1rem;
+        padding-left: 1rem;
     }
 }
 
@@ -145,7 +156,6 @@
 
 #m_main_container {
     display: inline-flex;
-    padding-left: 2.5rem;
 }
 
 #m_side_images {
