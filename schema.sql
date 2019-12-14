@@ -688,7 +688,7 @@ CREATE TABLE Products (
    INSERT INTO Products VALUES (
    id,
    'KÖTTBULLAR',
-   6,
+   1,
    null,
    null,
    'Meatballs, frozen'

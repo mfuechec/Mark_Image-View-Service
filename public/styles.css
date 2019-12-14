@@ -293,7 +293,7 @@ img.side {
     bottom: 16px;
     right: 16px;
     font-size: 18px;
-    box-shadow: 2px 2px 10px 2px lightgray;
+    box-shadow: 1px 1px 5px 1px #0058a336;
     display: none;
     z-index: 500;
 }

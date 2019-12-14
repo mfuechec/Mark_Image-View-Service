@@ -19,18 +19,7 @@ React.Component {
             imageNumber: 1,
             createdSheet: false
         }
-        this.getImageData.bind(this);
-        this.onClickSide.bind(this);
-        this.onClickMain.bind(this);
-        this.setBorder.bind(this);
-        this.animate.bind(this);
-        this.onClose.bind(this);
-        this.onVideoClick.bind(this);
-        this.setBorder.bind(this);
-        this.onScroll.bind(this);
-        this.hideImages.bind(this);
-        this.displayImages.bind(this);
-        this.changeRule.bind(this);
+        this.getWishListCoords = this.getWishListCoords.bind(this);
     }
 
     componentDidMount() {
@@ -48,12 +37,19 @@ React.Component {
     }
 
     onScroll() {
-        if (window.scrollY > 700) {
+        if (window.scrollY > this.getWishListCoords()) {
             document.getElementById('m_buyItemModal').style.display = 'flex';
         }
-        if (window.scrollY < 699) {
+        if (window.scrollY < this.getWishListCoords()) {
             document.getElementById('m_buyItemModal').style.display = 'none';
         }
+    }
+
+    getWishListCoords() {
+        var distanceFromTop = document.body.getBoundingClientRect().top * -1;
+        var element = document.getElementById('b_shoppingListButton');
+        var distanceToBottom = element.getBoundingClientRect().bottom;
+        return distanceFromTop + distanceToBottom;
     }
 
     onVideoClick() {
@@ -86,7 +82,6 @@ React.Component {
             this.setState({
                 createdSheet: true
             })
-
         }
     }
 
@@ -95,7 +90,7 @@ React.Component {
         var previous = this.state.previouslySelectedImageNumber;
         var current = this.state.imageNumber;
         for (var i = 0; i < document.styleSheets.length; i++) {
-            if (document.styleSheets[i].href === null) {
+            if (document.styleSheets[i].href === null && document.styleSheets[i].cssRules[0] !== undefined) {
                 if (document.styleSheets[i].cssRules[0].name === 'gallerymover') {
                     const sheet = document.styleSheets[i];
                     sheet.deleteRule(0);
@@ -227,14 +222,33 @@ React.Component {
             <div className='m_root'>
                 <div id="m_main_container">
                     <div id="m_side_images">
-                        <SideImages videoThumb={this.state.videoThumb} onVideoClick={this.onVideoClick.bind(this)} selectedItemId={this.state.selectedItem} onClick={this.onClickSide.bind(this)} numOfImgs={this.state.numOfImgs} imgNum={this.state.imageNumber} />
+                        <SideImages 
+                            videoThumb={this.state.videoThumb} 
+                            onVideoClick={this.onVideoClick.bind(this)} 
+                            selectedItemId={this.state.selectedItem} 
+                            onClick={this.onClickSide.bind(this)} 
+                            numOfImgs={this.state.numOfImgs} 
+                            imgNum={this.state.imageNumber} 
+                        />
                     </div>
                     <div id="m_main_image">
-                        <MainImage videoEmbed={this.state.videoEmbed} onClose={this.onClose.bind(this)} previousImage={this.state.previouslySelectedImageNumber} numOfImgs={this.state.numOfImgs} onScroll={this.onClickArrow.bind(this)} onClick={this.onClickMain.bind(this)} selectedItemId={this.state.selectedItem} imgNum={this.state.imageNumber}/>
+                        <MainImage 
+                            videoEmbed={this.state.videoEmbed} 
+                            onClose={this.onClose.bind(this)} 
+                            previousImage={this.state.previouslySelectedImageNumber} 
+                            numOfImgs={this.state.numOfImgs} 
+                            onScroll={this.onClickArrow.bind(this)} 
+                            onClick={this.onClickMain.bind(this)} 
+                            selectedItemId={this.state.selectedItem} 
+                            imgNum={this.state.imageNumber}
+                        />
                     </div>
                 </div>
                 <div id='m_buyItemModal'>
-                    <BuyItemModal itemName={this.state.itemName} selectedItemId={this.state.selectedItem}></BuyItemModal>
+                    <BuyItemModal 
+                        itemName={this.state.itemName} 
+                        selectedItemId={this.state.selectedItem}
+                    />
                 </div>
             </div>
         )
