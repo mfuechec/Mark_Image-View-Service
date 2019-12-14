@@ -181,7 +181,7 @@ React.Component {
     onClose() {
         var modal = document.getElementById("myModal");
         modal.style.display = 'none';
-        document.documentElement.style.overflow = 'auto';
+        document.documentElement.style.overflow = '';
     }
 
     onClickArrow(event) {
