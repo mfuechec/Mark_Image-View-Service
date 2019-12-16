@@ -97,7 +97,7 @@ React.Component {
                             100% {right: ${(current * 100) - 100}%;}
                         }
                         `
-                    )
+                    );
                     element.classList.add('animate');
                 }
             }
